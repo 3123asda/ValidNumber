@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <cctype> // Include the cctype header
+#include <regex>
+
+using namespace std;
+
+
+bool CheckNumber(string &String_Number);
+
+int main()
+{
+    string Number;
+    int ConvertStringIntoInteger;
+    
+    while (true)
+    {
+        cout << "Enter Number: ";
+        getline(cin,Number);
+        
+        if(CheckNumber(Number))
+        {
+            cout << "Correct Number." << endl;
+            ConvertStringIntoInteger = stoi(Number); // Convert the string into intergers
+    
+            cout << "Number: " << ConvertStringIntoInteger + 5 << endl; // Input number + 5; 
+        }
+        else
+        {
+            cout << "Invalid Number." << endl;
+        }
+    }
+    
+    
+}
+
+bool CheckNumber(string &String_Number)
+{
+    regex ValidNumber("[^0-9]");
+    return !regex_search(String_Number,ValidNumber);
+}
